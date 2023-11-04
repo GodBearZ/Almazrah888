@@ -2,6 +2,10 @@ body {
     text-align: center;
     font-family: Arial, sans-serif;
     background-color: #f0f0f0; /* เปลี่ยนสีพื้นหลังเป็นสีเทาอ่อน */
+    background-image: url(https://shorturl.at/sLV38);
+        background-position: left top;
+        background-size: 100% 100% ;
+        background-attachment:fixed;
 }
 
 h1 {
