@@ -8,21 +8,21 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
-    flex-direction: column; /* เรียงลำดับเนื้อหาในแนวตั้ง */
-    transform: scale(1); /* เพิ่มขนาดทุกอย่างเป็น 150% */
+    flex-direction: column; 
+    transform: scale(1);
 }
 
 h1 {
-    font-size: 36px; /* เพิ่มขนาดของตัวหัวเป็น 150% */
+    font-size: 36px;
 }
 
 p {
-    margin-top: 15px; /* เพิ่มระยะห่างของย่อส่วน */
-    font-size: 18px; /* เพิ่มขนาดของข้อความเป็น 150% */
+    margin-top: 15px; 
+    font-size: 18px; 
 }
 
 img {
-    margin-top: 20px; /* เพิ่มระยะห่างของภาพ */
-    width: 200px; /* เพิ่มขนาดของภาพให้เป็น 150% */
-    height: auto; /* รักษาสัดส่วนของภาพ */
+    margin-top: 20px; 
+    width: 200px; 
+    height: auto; 
 }
