@@ -1,0 +1,28 @@
+body {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    flex-direction: column; /* เรียงลำดับเนื้อหาในแนวตั้ง */
+    transform: scale(1); /* เพิ่มขนาดทุกอย่างเป็น 150% */
+}
+
+h1 {
+    font-size: 36px; /* เพิ่มขนาดของตัวหัวเป็น 150% */
+}
+
+p {
+    margin-top: 15px; /* เพิ่มระยะห่างของย่อส่วน */
+    font-size: 18px; /* เพิ่มขนาดของข้อความเป็น 150% */
+}
+
+img {
+    margin-top: 20px; /* เพิ่มระยะห่างของภาพ */
+    width: 200px; /* เพิ่มขนาดของภาพให้เป็น 150% */
+    height: auto; /* รักษาสัดส่วนของภาพ */
+}
