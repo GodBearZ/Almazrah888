@@ -8,7 +8,7 @@ let yourAceCount = 0;
 let hidden;
 let deck;
 
-let canHit = true; //allows the player (you) to draw while yourSum <= 21
+let canHit = true; 
 
 window.onload = function() {
     buildDeck();
@@ -23,15 +23,14 @@ function buildDeck() {
 
     for (let i = 0; i < types.length; i++) {
         for (let j = 0; j < values.length; j++) {
-            deck.push(values[j] + "-" + types[i]); //A-C -> K-C, A-D -> K-D
+            deck.push(values[j] + "-" + types[i]);
         }
     }
-    // console.log(deck);
 }
 
 function shuffleDeck() {
     for (let i = 0; i < deck.length; i++) {
-        let j = Math.floor(Math.random() * deck.length); // (0-1) * 52 => (0-51.9999)
+        let j = Math.floor(Math.random() * deck.length); 
         let temp = deck[i];
         deck[i] = deck[j];
         deck[j] = temp;
@@ -43,10 +42,9 @@ function startGame() {
     hidden = deck.pop();
     dealerSum += getValue(hidden);
     dealerAceCount += checkAce(hidden);
-    // console.log(hidden);
-    // console.log(dealerSum);
+
     while (dealerSum < 17) {
-        //<img src="./cards/4-C.png">
+
         let cardImg = document.createElement("img");
         let card = deck.pop();
         cardImg.src = "./cards/" + card + ".png";
@@ -84,7 +82,7 @@ function hit() {
     yourAceCount += checkAce(card);
     document.getElementById("your-cards").append(cardImg);
 
-    if (reduceAce(yourSum, yourAceCount) > 21) { //A, J, 8 -> 1 + 10 + 8
+    if (reduceAce(yourSum, yourAceCount) > 21) { 
         canHit = false;
     }
 
@@ -104,7 +102,7 @@ function stay() {
     else if (dealerSum > 21) {
         message = "You win!";
     }
-    //both you and dealer <= 21
+
     else if (yourSum == dealerSum) {
         message = "Tie!";
     }
@@ -121,10 +119,10 @@ function stay() {
 }
 
 function getValue(card) {
-    let data = card.split("-"); // "4-C" -> ["4", "C"]
+    let data = card.split("-");
     let value = data[0];
 
-    if (isNaN(value)) { //A J Q K
+    if (isNaN(value)) {
         if (value == "A") {
             return 11;
         }
@@ -155,7 +153,7 @@ function restart() {
 const wheel = document.getElementById("wheel");
 const spinBtn = document.getElementById("spin-btn");
 const finalValue = document.getElementById("final-value");
-//Object that stores values of minimum and maximum angle for a value
+
 const rotationValues = [
   { minDegree: 0, maxDegree: 30, value: 500 },
   { minDegree: 31, maxDegree: 90, value: 250 },
@@ -165,27 +163,27 @@ const rotationValues = [
   { minDegree: 271, maxDegree: 330, value: 750 },
   { minDegree: 331, maxDegree: 360, value: 500 },
 ];
-//Size of each piece
+
 const data = [16,16,16,16,16,16]; 
-//background color for each piece
+
 var pieColors = [
-  "#8b35bc",
-  "#b163da",
-  "#8b35bc",
-  "#b163da",
-  "#8b35bc",
-  "#b163da",
+  "#FFFF00",
+  "#CC9900",
+  "#FF0000",
+  "#FF6600",
+  "#FF9900",
+  "#FFCC00",
 ];
-//Create chart
+
 let myChart = new Chart(wheel, {
-  //Plugin for displaying text on pie chart
+ 
   plugins: [ChartDataLabels],
-  //Chart Type Pie
+
   type: "pie",
   data: {
-    //Labels(values which are to be displayed on chart)
+
     labels: [250, 500, 750, 1000, 1500, 2000],
-    //Settings for dataset/pie
+
     datasets: [
       {
         backgroundColor: pieColors,
@@ -194,16 +192,16 @@ let myChart = new Chart(wheel, {
     ],
   },
   options: {
-    //Responsive chart
+
     responsive: true,
     animation: { duration: 0 },
     plugins: {
-      //hide tooltip and legend
+  
       tooltip: false,
       legend: {
         display: false,
       },
-      //display labels inside pie chart
+
       datalabels: {
         color: "#ffffff",
         formatter: (_, context) => context.chart.data.labels[context.dataIndex],
@@ -212,10 +210,10 @@ let myChart = new Chart(wheel, {
     },
   },
 });
-//display value based on the randomAngle
+
 const valueGenerator = (angleValue) => {
   for (let i of rotationValues) {
-    //if the angleValue is between min and max then display it
+
     if (angleValue >= i.minDegree && angleValue <= i.maxDegree) {
       finalValue.innerHTML = `<p>Value: ${i.value}</p>`;
       spinBtn.disabled = false;
@@ -224,27 +222,24 @@ const valueGenerator = (angleValue) => {
   }
 };
 
-//Spinner count
+
 let count = 0;
-//100 rotations for animation and last rotation for result
+
 let resultValue = 101;
-//Start spinning
+
 spinBtn.addEventListener("click", () => {
   spinBtn.disabled = true;
-  //Empty final value
+
   finalValue.innerHTML = `<p>Good Luck!</p>`;
-  //Generate random degrees to stop at
+
   let randomDegree = Math.floor(Math.random() * (355 - 0 + 1) + 0);
-  //Interval for rotation animation
+
   let rotationInterval = window.setInterval(() => {
-    //Set rotation for piechart
-    /*
-    Initially to make the piechart rotate faster we set resultValue to 101 so it rotates 101 degrees at a time and this reduces by 1 with every count. Eventually on last rotation we rotate by 1 degree at a time.
-    */
+ 
     myChart.options.rotation = myChart.options.rotation + resultValue;
-    //Update chart with new value;
+
     myChart.update();
-    //If rotation>360 reset it back to 0
+
     if (myChart.options.rotation >= 360) {
       count += 1;
       resultValue -= 5;
