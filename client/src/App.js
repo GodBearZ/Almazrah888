@@ -152,22 +152,21 @@ function restart() {
     location.reload();
 }
 
-
 const wheel = document.getElementById("wheel");
 const spinBtn = document.getElementById("spin-btn");
 const finalValue = document.getElementById("final-value");
 //Object that stores values of minimum and maximum angle for a value
 const rotationValues = [
-  { minDegree: 0, maxDegree: 30, value: 2 },
-  { minDegree: 31, maxDegree: 90, value: 1 },
-  { minDegree: 91, maxDegree: 150, value: 6 },
-  { minDegree: 151, maxDegree: 210, value: 5 },
-  { minDegree: 211, maxDegree: 270, value: 4 },
-  { minDegree: 271, maxDegree: 330, value: 3 },
-  { minDegree: 331, maxDegree: 360, value: 2 },
+  { minDegree: 0, maxDegree: 30, value: 500 },
+  { minDegree: 31, maxDegree: 90, value: 250 },
+  { minDegree: 91, maxDegree: 150, value: 2000 },
+  { minDegree: 151, maxDegree: 210, value: 1500 },
+  { minDegree: 211, maxDegree: 270, value: 1000 },
+  { minDegree: 271, maxDegree: 330, value: 750 },
+  { minDegree: 331, maxDegree: 360, value: 500 },
 ];
 //Size of each piece
-const data = [16, 16, 16, 16, 16, 16];
+const data = [16,16,16,16,16,16]; 
 //background color for each piece
 var pieColors = [
   "#8b35bc",
@@ -185,7 +184,7 @@ let myChart = new Chart(wheel, {
   type: "pie",
   data: {
     //Labels(values which are to be displayed on chart)
-    labels: [1, 2, 3, 4, 5, 6],
+    labels: [250, 500, 750, 1000, 1500, 2000],
     //Settings for dataset/pie
     datasets: [
       {
@@ -218,7 +217,7 @@ const valueGenerator = (angleValue) => {
   for (let i of rotationValues) {
     //if the angleValue is between min and max then display it
     if (angleValue >= i.minDegree && angleValue <= i.maxDegree) {
-      finalValue.innerHTML = `<p>คุณได้รับ  ${i.value} พอยต์!</p>`;
+      finalValue.innerHTML = `<p>Value: ${i.value}</p>`;
       spinBtn.disabled = false;
       break;
     }
@@ -233,7 +232,7 @@ let resultValue = 101;
 spinBtn.addEventListener("click", () => {
   spinBtn.disabled = true;
   //Empty final value
-  finalValue.innerHTML = `<p>กำลังเลือกเลขนำโชคของคุณ!</p>`;
+  finalValue.innerHTML = `<p>Good Luck!</p>`;
   //Generate random degrees to stop at
   let randomDegree = Math.floor(Math.random() * (355 - 0 + 1) + 0);
   //Interval for rotation animation
@@ -258,5 +257,3 @@ spinBtn.addEventListener("click", () => {
     }
   }, 10);
 });
-
-
